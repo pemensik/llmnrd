@@ -16,7 +16,8 @@ BuildRequires:  make
 BuildRequires:  git-core
 %endif
 BuildRequires:  systemd-rpm-macros
-%systemd_requires
+BuildRequires:  hostname
+%{?systemd_requires}
 
 %description
 llmnrd is a daemon implementing the Link-Local Multicast Name Resolution (LLMNR)
@@ -39,7 +40,8 @@ networks where no DNS server is available. It supports both IPv4 and IPv6.
 install -Dp %{SOURCE1} ${RPM_BUILD_ROOT}%{_unitdir}/llmnrd.service
 
 %check
-llmnr-query $(hostname)
+# would not find result, but it tries
+${RPM_BUILD_ROOT}%{_bindir}/llmnr-query -I lo $(hostname)
 
 %post
 %systemd_post %{name}
