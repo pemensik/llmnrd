@@ -16,7 +16,6 @@ BuildRequires:  make
 BuildRequires:  git-core
 %endif
 BuildRequires:  systemd-rpm-macros
-BuildRequires:  hostname
 %{?systemd_requires}
 
 %description
@@ -41,7 +40,7 @@ install -Dp %{SOURCE1} ${RPM_BUILD_ROOT}%{_unitdir}/llmnrd.service
 
 %check
 # would not find result, but it tries
-${RPM_BUILD_ROOT}%{_bindir}/llmnr-query -I lo $(hostname)
+${RPM_BUILD_ROOT}%{_bindir}/llmnr-query -I lo localhost
 
 %post
 %systemd_post %{name}
