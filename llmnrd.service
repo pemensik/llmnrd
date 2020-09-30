@@ -1,0 +1,12 @@
+[Unit]
+Description=Link-Local Multicast Resolution Daemon
+After=network.target
+
+[Service]
+ExecStart=/usr/sbin/llmnrd -6
+User=llmnrd
+DynamicUser=on
+
+[Install]
+WantedBy=multi-user.target
+
